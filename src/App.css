@@ -5,9 +5,9 @@
   color: white;
   
 }
-
 .App-header {
   text-align: center;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -15,6 +15,8 @@
 .layout{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap:20px;
 }
-
+.orange{
+  color: orange
+}

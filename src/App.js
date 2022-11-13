@@ -1,36 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './App.css'
+import MovieDetails from './Components/MovieDetails'
+import MovieList from './Components/MovieList'
+
 
 const App = () => {
-  const [movies, setMovie] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null)
 
-  useEffect = (()=>{
-    fetch("http://127.0.0.1:8000/api/movies/",{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Token 945107a5e5108e11122d69a3e2e1e8c3191906e0'
-      }
-    })
-    .then(resp => resp.json())
-    .then(resp => setMovie(resp))
-    .catch(error => console.log(error))
-  },[])
+  // when click console.log show movie title
+  const movieClicked = movie => {
+    setSelectedMovie(movie);
+  }
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Movie Rater</h1>
-        <div className='layout'>
-          <div>
-            {
-              movies.map(movie => {
-                return <div key={movie}>{movie.title}</div>
-              })
-            }
-          </div>
-          <div>Movie detail</div>
-        </div>
+      <header>
+        <h2 className='App-header'>Movie Rater</h2>
       </header>
+      <div className='layout'>
+          <MovieList movieClicked={movieClicked}/>
+          <MovieDetails movie = {selectedMovie}/>
+      </div>
     </div>
 
 
@@ -38,3 +27,4 @@ const App = () => {
 }
 
 export default App
+
